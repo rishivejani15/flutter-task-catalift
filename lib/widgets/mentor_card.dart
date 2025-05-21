@@ -45,7 +45,7 @@ class MentorCard extends StatelessWidget {
                   Text(
                     '${mentor.compatibility}% compatibility',
                     style: TextStyle(
-                      color: mentor.compatibility < 80
+                      color: mentor.compatibility < 85
                           ? Colors.grey
                           : Colors.green,
                       fontWeight: FontWeight.bold,

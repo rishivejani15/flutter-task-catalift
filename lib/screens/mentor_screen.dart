@@ -40,6 +40,16 @@ class _MentorScreenState extends State<MentorScreen> {
           'Strategy Manager @CEO Office | Ex-eBay & L&T | MDI Gurgaon, ESCP Europe | 32+ National Case Comps Podiums',
       compatibility: 82,
     ),
+    Mentor(
+        name: 'Jhonny Little',
+        rating: 2.9,
+        sector: 'IT Sector',
+        experience: '4 years',
+        field: 'Business Administration',
+        reviews: 175,
+        description:
+            'Strategy Manager @CEO Office | Ex-eBay & L&T | MDI Gurgaon, ESCP Europe | 32+ National Case Comps Podiums',
+        compatibility: 75),
   ];
 
   static final List<Mentor> exploreMentors = [
