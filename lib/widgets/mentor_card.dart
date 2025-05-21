@@ -23,7 +23,7 @@ class MentorCard extends StatelessWidget {
             const CircleAvatar(
               radius: 30,
               backgroundColor: Colors.grey,
-              child: Icon(Icons.person, size: 40, color: Colors.white),
+              backgroundImage: AssetImage('assets/images/dog.jpg'),
             ),
             const SizedBox(width: 16),
             Expanded(
@@ -38,14 +38,16 @@ class MentorCard extends StatelessWidget {
                     mentor.description,
                     style: TextStyles.description.copyWith(
                       fontSize: 10,
-                      color: Colors.grey[700], // light grey shade
+                      color: Colors.grey[700],
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     '${mentor.compatibility}% compatibility',
                     style: TextStyle(
-                      color: Colors.green,
+                      color: mentor.compatibility < 80
+                          ? Colors.grey
+                          : Colors.green,
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
                     ),
@@ -62,17 +64,27 @@ class MentorCard extends StatelessWidget {
   Widget _buildRatingAndSector() {
     return Row(
       children: [
-        Icon(Icons.star_border, color: Colors.green, size: 16),
+        const Icon(Icons.star_border, color: Colors.lightGreen, size: 16),
         const SizedBox(width: 4),
-        Text(mentor.rating.toString(), style: TextStyles.rating),
+        Text(
+          mentor.rating.toString(),
+          style: TextStyles.rating.copyWith(
+            fontSize: 13,
+            color: Colors.lightGreen,
+          ),
+        ),
         const SizedBox(width: 12),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
           decoration: BoxDecoration(
-            color: Colors.amber.shade100,
+            color: Colors.transparent,
+            border: Border.all(color: Colors.amber.shade300),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: Text(mentor.sector, style: TextStyles.sectorTag),
+          child: Text(
+            mentor.sector,
+            style: TextStyles.sectorTag.copyWith(color: Colors.amber.shade300),
+          ),
         ),
       ],
     );
@@ -90,11 +102,11 @@ class MentorCard extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.alarm, size: 16, color: darkBlue),
+                const Icon(Icons.alarm, size: 16, color: darkBlue),
                 const SizedBox(width: 4),
                 Text(
                   mentor.experience,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: AppColors.primaryBlue,
                     fontSize: 10.0,
                     fontWeight: FontWeight.bold,
@@ -102,15 +114,15 @@ class MentorCard extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(width: 8), // very small spacing
+            const SizedBox(width: 8),
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.work_outline, size: 16, color: darkBlue),
+                const Icon(Icons.work_outline, size: 16, color: darkBlue),
                 const SizedBox(width: 4),
                 Text(
                   mentor.field,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: AppColors.primaryBlue,
                     fontSize: 10.0,
                     fontWeight: FontWeight.bold,
@@ -124,11 +136,11 @@ class MentorCard extends StatelessWidget {
         const SizedBox(height: 6),
         Row(
           children: [
-            Icon(Icons.comment_outlined, size: 16, color: darkBlue),
+            const Icon(Icons.comment_outlined, size: 16, color: darkBlue),
             const SizedBox(width: 4),
             Text(
               '${mentor.reviews} Reviews',
-              style: TextStyle(
+              style: const TextStyle(
                 color: AppColors.primaryBlue,
                 fontSize: 10.0,
                 fontWeight: FontWeight.bold,

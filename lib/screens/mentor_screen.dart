@@ -13,25 +13,11 @@ class MentorScreen extends StatefulWidget {
 
 class _MentorScreenState extends State<MentorScreen> {
   int _selectedTabIndex = 0;
-  int _selectedIndex = 1;
+  final _selectedIndex = 1;
   final TextEditingController _searchController = TextEditingController();
   List<Mentor> _filteredMentors = [];
 
   static final List<Mentor> myMentors = [
-    Mentor(
-      name: 'Gaurav Samant',
-      rating: 4.9,
-      sector: 'IT Sector',
-      experience: '4 years',
-      field: 'Business Administration',
-      reviews: 175,
-      description:
-          'Strategy Manager @CEO Office | Ex-eBay & L&T | MDI Gurgaon, ESCP Europe | 32+ National Case Comps Podiums',
-      compatibility: 98,
-    ),
-  ];
-
-  static final List<Mentor> exploreMentors = [
     Mentor(
       name: 'Rishi Vejani',
       rating: 9.9,
@@ -56,6 +42,20 @@ class _MentorScreenState extends State<MentorScreen> {
     ),
   ];
 
+  static final List<Mentor> exploreMentors = [
+    Mentor(
+      name: 'Gaurav Samant',
+      rating: 4.9,
+      sector: 'IT Sector',
+      experience: '4 years',
+      field: 'Business Administration',
+      reviews: 175,
+      description:
+          'Strategy Manager @CEO Office | Ex-eBay & L&T | MDI Gurgaon, ESCP Europe | 32+ National Case Comps Podiums',
+      compatibility: 98,
+    ),
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -77,7 +77,7 @@ class _MentorScreenState extends State<MentorScreen> {
   void _onTabChanged(int index) {
     setState(() {
       _selectedTabIndex = index;
-      _searchController.clear(); // reset search
+      _searchController.clear();
       _filteredMentors = index == 0 ? myMentors : exploreMentors;
     });
   }
@@ -114,7 +114,10 @@ class _MentorScreenState extends State<MentorScreen> {
             padding: EdgeInsets.fromLTRB(16, 16, 16, 4),
             child: Text(
               'Mentors',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 24,
+                color: AppColors.primaryBlue,
+              ),
             ),
           ),
           _buildTabs(),
@@ -144,8 +147,8 @@ class _MentorScreenState extends State<MentorScreen> {
         ),
         child: Row(
           children: [
-            _buildTabItem("MY MENTORS", 0),
-            _buildTabItem("EXPLORE", 1),
+            _buildTabItem("MY MENTORS", 1),
+            _buildTabItem("EXPLORE", 0),
           ],
         ),
       ),
@@ -201,10 +204,9 @@ class _MentorScreenState extends State<MentorScreen> {
   Widget _buildBottomNavigationBar() {
     return BottomNavigationBar(
       currentIndex: _selectedIndex,
-      backgroundColor: AppColors.primaryBlue, // Set dark blue background
-      selectedItemColor: Colors.white, // White for selected item
-      unselectedItemColor:
-          Colors.white70, // Slightly dimmed for unselected items
+      backgroundColor: AppColors.primaryBlue,
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.white70,
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'Home'),
         BottomNavigationBarItem(
